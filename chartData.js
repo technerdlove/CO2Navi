@@ -1,10 +1,9 @@
-$.getJSON("feed.json", function (data) {
+function giveData() {
+    var data = [];
+    $.getJSON("feed.json", function (data) {
 
-    for (var i=0; i<data.length; i++) {
-
-        var node = document.createElement("LI");
- 
-        var distanceMiles = data[i].distance;
-        var co2Saved = data[i].co2Saved;
+        for (var i=0; i<data.length; i++) {
+            data.push(data[i].co2Saved);
+        }
     }
 }
