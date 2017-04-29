@@ -15,13 +15,10 @@ t -= hour * hours;
 var mins = Math.Round(t / minutes);
 
 // e.x. 2017/183/18/24 = 24th min of 18th hour of 183rd day of 2017
-var result = year.toString();
+var result = y.toString();
 var slash = "/";
-result.concat(slash);
-result.concat(day.toString());
-result.concat(slash);
-result.concat(hour.toString());
-result.concat(slash);
-result.concat(mins.toStirng());
+result.concat(slash.concat(day.toString()));
+result.concat(slash.concat(hour.toStirng()));
+result.concat(slash.concat(mins.toString()));
 return result;
 }
