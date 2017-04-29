@@ -29,8 +29,8 @@ function saveToLocalStorage(){
 function updateTravelHistory(mode){
     // update travelHistory
     travelHistory["CO2Navi"]="CO2Navi";     //replace me!
-    if (!travelHistory["history"]){
-        travelHistory["history"]=[]
+    if (typeof(travelHistory["trips"])=="undefined"){
+        travelHistory["trips"]=[]
     }
     var ts = Math.round((new Date()).getTime() / 1000);
     googleDirectionRespond[mode]["time"] = ts;
