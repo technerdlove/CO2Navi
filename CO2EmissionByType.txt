@@ -1,0 +1,5 @@
+Electric Car: 0.166
+Hybrid / Motorcycle: 0.331
+Conventional: 0.637
+Bus: 5.031
+Train: 13.189
