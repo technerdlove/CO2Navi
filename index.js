@@ -51,14 +51,23 @@ getLocation();
       // When the user selects a city, get the place details for the city and
       // zoom the map in on the city.
       function onPlaceChanged() {
+          /*
         var destinationPlace = autocomplete.getPlace();
+        
         if (destinationPlace.address_components[0]) {
             // https://developers.google.com/maps/documentation/javascript/directions#TravelModes
             calculateAndDisplayRoute(directionsService, destinationPlace.address_components[0].long_name, 'TRANSIT');
+            
+            //DRIVING (Default) indicates standard driving directions using the road network.
+            //BICYCLING requests bicycling directions via bicycle paths & preferred streets.
+            //TRANSIT requests directions via public transit routes.
+            //WALKING requests walking directions via pedestrian paths & sidewalks.
+              
 
         } else {
           document.getElementById('autocomplete').placeholder = 'Enter a city';
         }
+        */
       }
 
 
@@ -69,9 +78,30 @@ getLocation();
           travelMode: travelMode //'DRIVING' 
         }, function(response, status) {
           if (status === 'OK') {
-            console.log(JSON.stringify(response));
+            console.log(travelMode);
+            console.log(JSON.stringify(response.routes[0].legs[0].distance));
           } else {
             console.log('Directions request failed due to ' + status);
           }
         });
+      }
+
+
+
+
+
+
+      function getDirectionFromGoogle(){
+          var desString = document.getElementById("autocomplete").value;
+          calculateAndDisplayRoute(directionsService, desString, 'DRIVING');
+          calculateAndDisplayRoute(directionsService, desString, 'BICYCLING');
+          calculateAndDisplayRoute(directionsService, desString, 'TRANSIT');
+          calculateAndDisplayRoute(directionsService, desString, 'WALKING');
+            
+            //DRIVING (Default) indicates standard driving directions using the road network.
+            //BICYCLING requests bicycling directions via bicycle paths & preferred streets.
+            //TRANSIT requests directions via public transit routes.
+            //WALKING requests walking directions via pedestrian paths & sidewalks.
+              
+
       }
