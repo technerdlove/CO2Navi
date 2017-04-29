@@ -1,5 +1,4 @@
 var currentPosition;
-
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(storePosition);
@@ -71,20 +70,30 @@ getLocation();
       }
 
 
-    function calculateAndDisplayRoute(directionsService, destinationName, travelMode) {
-        directionsService.route({
-          origin: currentPosition.coords.latitude + ", " + currentPosition.coords.longitude,
-          destination: destinationName,
-          travelMode: travelMode //'DRIVING' 
-        }, function(response, status) {
-          if (status === 'OK') {
+function calculateAndDisplayRoute(directionsService, destinationName, travelMode) {
+    directionsService.route({
+        origin: currentPosition.coords.latitude + ", " + currentPosition.coords.longitude,
+        destination: destinationName,
+        travelMode: travelMode //'DRIVING' 
+    }, function(response, status) {
+        if (status === 'OK') {
+            console.log(destinationName);
+            var latlon = currentPosition.coords.latitude + "," + currentPosition.coords.longitude;
+            var daddr = destinationName.split(' ').join('+');
             console.log(travelMode);
             console.log(JSON.stringify(response.routes[0].legs[0].distance));
-          } else {
+            var ul=document.getElementById("tp");
+            ul.innerHTML+='<li><a href="http://maps.google.com/maps?daddr='+daddr+"&saddr="+latlon+'">';
+            ul.innerHTML+='<h2>'+travelMode+'</h2>';
+            ul.innerHTML+='<p>Distance: '+response.routes[0].legs[0].distance.text.trim()+'    ';
+            ul.innerHTML+="CO2: "+'</p>';
+            ul.innerHTML+='</a></li>';
+            console.log(ul);
+        } else {
             console.log('Directions request failed due to ' + status);
-          }
-        });
-      }
+        }
+    });
+}
 
 
 

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
     <script src="index.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdo0fju8qeIKhTcsnxtnSlmz3dKeWuc9o&libraries=places&callback=initMap"
         async defer></script>
@@ -16,6 +15,7 @@
 </head>
 <body>
 
+    <script src="main.js"></script>
 <div data-role="page" id="main">
 
 	<div data-role="header">
@@ -68,7 +68,7 @@
             http://demos.jquerymobile.com/1.4.0/listview/#&ui-state=dialog
             https://developers.google.com/maps/documentation/ios-sdk/urlscheme
         -->
-        <ul data-role="listview">
+        <ul data-role="listview" id="tp">
             <li><a href="http://maps.google.com/maps?daddr=space+needle">
             <h2>Stephen Weber</h2>
             <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
@@ -81,9 +81,7 @@
             <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
                 <p class="ui-li-aside"><strong>9:18</strong>AM</p>
             </a></li>
-            <!--
-            <li data-role="list-divider">Thursday, October 7, 2010 <span class="ui-li-count">1</span></li>
-            -->
+
             <li><a href="http://maps.google.com/maps?daddr=space+needle">
             <h2>Avery Walker</h2>
             <p><strong>Re: Dinner Tonight</strong></p>
