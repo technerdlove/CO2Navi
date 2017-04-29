@@ -33,3 +33,44 @@ Units
 	• Imperial
 Region
 ccTLD - country code
+
+OUTPUTS
+
+Available_travel_modes[]
+
+Routes
+	• Legs[]
+		○ Steps
+			§ Travel_mode
+			§ Duration
+			§ Distance
+			§ Step
+				□ Transit_details
+					® Line
+						◊ Vehicle
+							} Type
+							
+	• Fare
+
+Vehicle.type mapping
+	• Subway
+		○ METRO_RAIL
+		○ SUBWAY
+		○ TRAM
+		○ MONORAIL
+	• Train
+		○ RAIL
+		○ COMMUTER_TRAIN
+		○ HIGH_SPEED_TRAIN
+	• Bus
+		○ BUS
+		○ INTERCITY_BUS
+		○ TROLLEYBUS
+	• Car
+		○ SHARE_TAXI
+	• Other
+		○ FERRY
+		○ CABLE_CAR
+		○ GONDALA_LIFT
+		○ FUNICULAR
+OTHER
