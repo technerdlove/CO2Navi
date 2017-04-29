@@ -34,9 +34,22 @@ function updateTravelHistory(mode){
     }
     var ts = Math.round((new Date()).getTime() / 1000);
     googleDirectionRespond[mode]["time"] = ts;
-    travelHistory["history"].push(googleDirectionRespond[mode]);
+
+    var trip = {
+            "name": "You", 
+            "transportation": mode,
+            "distance": googleDirectionRespond[mode].distance.value, 
+            "co2Saved": 19,
+            "date": ts
+            }
+    travelHistory["trips"].push(trip);
 
     saveToLocalStorage();
+}
+
+
+function clearHistory(){
+    localStorage.setItem("CO2Navi", "{}");
 }
 
 
