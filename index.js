@@ -117,27 +117,8 @@ function calculateAndDisplayRoute(directionsService, destinationName, travelMode
         travelMode: travelMode //'DRIVING' 
     }, function(response, status) {
         if (status === 'OK') {
-            console.log(destinationName);
-            var latlon = currentPosition.coords.latitude + "," + currentPosition.coords.longitude;
-            var daddr = destinationName.split(' ').join('+');
-            console.log(travelMode);
-            console.log(JSON.stringify(response.routes[0].legs[0].distance));
-            var ul=document.getElementById("tp");
-            var myList = '<li><a href="http://maps.google.com/maps?daddr='+daddr+"&saddr="+latlon+'">';
-            myList += '<h2>'+travelMode+'</h2>';
-            myList+='<p>Distance: '+response.routes[0].legs[0].distance.text.trim()+'    ';
-            myList+="CO2: "+'</p>';
-            myList+='</a></li>';
-            ul.innerHTML+=myList;
-            console.log(ul);
-
-            $('#tp').listview('refresh');
- 
-
-            console.log("DEBUG: " + travelMode + ": " + JSON.stringify(response.routes[0].legs[0].distance.text));
-            console.log("DEBUG: " + travelMode + ": " + JSON.stringify(response.routes[0].legs[0].duration.value));
-            var googleMapUrl = "Google";//= "https://www.google.com/maps?daddr="+destinationName.replace(/ /g, "+");+"&dirflg=";
-
+            
+            var googleMapUrl = "https://www.google.com/maps?daddr="+destinationName.replace(/ /g, "+")+"&dirflg=";
             //* w: walking
             //* b: bicycling
             //* d or h or t: drive
@@ -159,12 +140,21 @@ function calculateAndDisplayRoute(directionsService, destinationName, travelMode
             }
             var distance = response.routes[0].legs[0].distance.value;
             var duration = response.routes[0].legs[0].duration.text;
-            getDirectionRespond(JSON.stringify(distance, 
-                                                duration,
-                                                googleMapUrl,
-                                                travelMode));
+            
+            // weird bug, the string disappear if I pass it into the function :/
+            googleDirectionRespond[travelMode] = {
+                "distance": distance,
+                "duration": duration,
+                "googleMapUrl": googleMapUrl
+            }
+            getDirectionRespond();
         } else {
-            getDirectionRespond(0,"---", "#", travelMode);
+            googleDirectionRespond[travelMode] = {
+                "distance": "0",
+                "duration": "---",
+                "googleMapUrl": "#"
+            }
+            getDirectionRespond();
             console.log('ERROR: Directions request failed due to ' + status);
         }
     });
@@ -189,19 +179,34 @@ function getDirectionFromGoogle(){
 
 function getDirectionRespond(distance, duration, googleMapUrl, travelMode){
     
-    googleDirectionRespond[travelMode] = {
-        "distance": distance,
-        "duration": duration,
-        "googleMapUrl": googleMapUrl
-    }
-    console.log("DEBUG: "+ JSON.stringify(googleDirectionRespond));
-    
     numberOfRespondRecived++;
     if (numberOfRespondRecived>=4){ //get all respond
-        gotAllRespond(googleDirectionRespond);
+        gotAllRespond();
     }
 }
 
-function gotAllRespond(respond){
-    console.log("DEBUG: "+ JSON.stringify(respond));
+function gotAllRespond(){
+    console.log("DEBUG: "+ JSON.stringify(googleDirectionRespond));
+
+    var order = [ 'DRIVING', 'TRANSIT', 'BICYCLING', 'WALKING' ];
+
+
+    for (var i =0; i<4; i++){
+        var currentMode = order[i];
+
+        var ul=document.getElementById("tp");
+        var myList = '<li><a href="'+googleDirectionRespond[currentMode].googleMapUrl+'">';
+        myList += '<h2>'+currentMode+'</h2>';
+        myList+='<p>Distance: '+googleDirectionRespond[currentMode].distance+'    ';
+        myList+="CO2: "+'</p>';
+        myList+='<p class="ui-li-aside"><strong>'+googleDirectionRespond[currentMode].duration+'</strong></p>';
+        myList+='</a></li>';
+        ul.innerHTML+=myList;
+        console.log(ul);
+
+        $('#tp').listview('refresh');
+    }
+
+
+
 }
