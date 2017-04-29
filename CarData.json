@@ -52,7 +52,7 @@
   {
    "date": "042420170800",
    "CO2": 6.6248,
-   "travelMode": "Conventional Car"
+   "travelMode": "Conventional Car",
    "people": 1
   }
  },
@@ -60,7 +60,7 @@
   {
    "date": "042420171800",
    "CO2": 6.6248,
-   "travelMode": "Conventional Car"
+   "travelMode": "Conventional Car",
    "people": 1
   }
  },
