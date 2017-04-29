@@ -1,0 +1,60 @@
+[{
+"name": "Tudor", 
+"transportation": "bike",
+"distance": 20, 
+"co2Saved": 19
+},
+{
+"name": "Tudor", 
+"transportation": "bike",
+"distance": 5, 
+"co2Saved": 10
+},
+{
+"name": "Tudor", 
+"transportation": "bike",
+"distance": 7, 
+"co2Saved": 8
+},
+{
+"name": "Gary",  
+"transportation": "walk",
+"distance": 9, 
+"co2Saved": 10
+},
+{
+"name": "Gary",  
+"transportation": "bus",
+"distance": 13, 
+"co2Saved": 9
+},
+{
+"name": "Kyle",  
+"transportation": "walk",
+"distance": 20, 
+"co2Saved": 14
+},
+{
+"name": "Gary",  
+"transportation": "walk",
+"distance": 6, 
+"co2Saved": 19
+},
+{
+"name": "Tudor", 
+"transportation": "bike",
+"distance": 18, 
+"co2Saved": 10
+},
+{
+"name": "Kyle",  
+"transportation": "bus",
+"distance": 17, 
+"co2Saved": 2
+},
+{
+"name": "Gary",  
+"transportation": "walk",
+"distance": 19, 
+"co2Saved": 2
+}]

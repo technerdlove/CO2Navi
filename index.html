@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
     <script src="index.js"></script>
-        
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdo0fju8qeIKhTcsnxtnSlmz3dKeWuc9o&libraries=places&callback=initMap"
         async defer></script>
 
@@ -61,8 +60,9 @@
         <div>Saving History</div>
         <img src="http://core0.staticworld.net/images/article/2015/03/health-app-steps-100573353-large.png" style="width:100%"/>
             
-        <ul data-role="listview" data-inset="true" data-divider-theme="a">
+        <ul data-role="listview" data-inset="true" data-divider-theme="a" id="feed">
             <li data-role="list-divider">Feed</li>
+            <!--
             <li>Kyle took bus back home and saved 100lbs</li>
             <li>YOU took bus to work and saved 100lbs</li>
             <li>Gary biked back home and saved 100lbs</li>
@@ -73,9 +73,10 @@
             <li>Kyle took bus back home and saved 100lbs</li>
             <li>Kyle took bus back home and saved 100lbs</li>
             <li>Kyle took bus back home and saved 100lbs</li>
+            -->
         </ul>
 	</div><!-- /content -->
-
+    <script src="feed.js"></script>
 </div><!-- /page -->
 
 
