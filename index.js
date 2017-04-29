@@ -26,9 +26,15 @@ function saveToLocalStorage(){
 }
 
 
-function updateTravelHistory(someInput){
+function updateTravelHistory(mode){
     // update travelHistory
     travelHistory["CO2Navi"]="CO2Navi";     //replace me!
+    if (!travelHistory["history"]){
+        travelHistory["history"]=[]
+    }
+    var ts = Math.round((new Date()).getTime() / 1000);
+    googleDirectionRespond[mode]["time"] = ts;
+    travelHistory["history"].push(googleDirectionRespond[mode]);
 
     saveToLocalStorage();
 }
@@ -138,7 +144,7 @@ function calculateAndDisplayRoute(directionsService, destinationName, travelMode
                     googleMapUrl += 'w';
                     break;
             }
-            var distance = response.routes[0].legs[0].distance.value;
+            var distance = response.routes[0].legs[0].distance;
             var duration = response.routes[0].legs[0].duration.text;
             
             // weird bug, the string disappear if I pass it into the function :/
@@ -150,7 +156,7 @@ function calculateAndDisplayRoute(directionsService, destinationName, travelMode
             getDirectionRespond();
         } else {
             googleDirectionRespond[travelMode] = {
-                "distance": "0",
+                "distance": { "value": 0, "text": "---"},
                 "duration": "---",
                 "googleMapUrl": "#"
             }
@@ -186,23 +192,27 @@ function getDirectionRespond(distance, duration, googleMapUrl, travelMode){
 }
 
 function gotAllRespond(){
-    console.log("DEBUG: "+ JSON.stringify(googleDirectionRespond));
+    //console.log("DEBUG: "+ JSON.stringify(googleDirectionRespond));
 
     var order = [ 'DRIVING', 'TRANSIT', 'BICYCLING', 'WALKING' ];
 
+    var drivingDistance = googleDirectionRespond['DRIVING'].distance.value;
 
     for (var i =0; i<4; i++){
         var currentMode = order[i];
 
+        var co2Level = drivingDistance - googleDirectionRespond[currentMode].distance.value;  //some number?
+
         var ul=document.getElementById("tp");
-        var myList = '<li><a href="'+googleDirectionRespond[currentMode].googleMapUrl+'">';
+        var myList = '<li><a href="'+googleDirectionRespond[currentMode].googleMapUrl+'" onclick="updateTravelHistory(\''+currentMode+'\')">';
         myList += '<h2>'+currentMode+'</h2>';
-        myList+='<p>Distance: '+googleDirectionRespond[currentMode].distance+'    ';
-        myList+="CO2: "+'</p>';
-        myList+='<p class="ui-li-aside"><strong>'+googleDirectionRespond[currentMode].duration+'</strong></p>';
+        myList+='<p style="float:left">Distance: '+googleDirectionRespond[currentMode].distance.text+'    ';
+        myList+="CO2 saving: "+'</p>';
+        myList+='<p style="float:right; margin:0px"><strong style="font-size:300%;">'+co2Level+'</strong> saving</p>';
+        myList+='<p class="ui-li-aside">'+googleDirectionRespond[currentMode].duration+'</p>';
         myList+='</a></li>';
         ul.innerHTML+=myList;
-        console.log(ul);
+        //console.log(ul);
 
         $('#tp').listview('refresh');
     }
