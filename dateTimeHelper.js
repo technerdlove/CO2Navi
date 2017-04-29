@@ -1,10 +1,24 @@
-function getDateString( dateObj ) 
-{
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
-    var hour = dateObj.getHours();
-    var mins = dateObj.getMinutes();
+function getDateTimeString( t ) { //t = Date.getTime(); (MS since 1970)
+    var minutes = 1000 * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
 
-    return = year + "/" + month + "/" + day + " " + hour + ":" + "mins";
+
+    var y = Math.floor(t / years);
+    t -= y*years;
+    y += 1970;
+    var day = Math.floor(t / days);
+    t -= day*days;
+    var hour = Math.Floor(t / hours);
+    t -= hour * hours;
+    var mins = Math.Round(t / minutes);
+
+    // e.x. 2017/183/18/24 = 24th min of 18th hour of 183rd day of 2017
+    var result = y.toString();
+    var slash = "/";
+    result.concat(slash.concat(day.toString()));
+    result.concat(slash.concat(hour.toStirng()));
+    result.concat(slash.concat(mins.toString()));
+    return result;
 }
