@@ -1,0 +1,116 @@
+{"trips":
+[
+ {"trip":
+  {
+   "date": "042120170800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people": 2
+  }
+ },
+ {"trip":
+  {
+   "date": "042120171800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people":2
+  }
+ },
+ {"trip":
+  {
+   "date": "042220171000",
+   "CO2": 9.13965,
+   "travelMode": "Bus",
+   "people": 12
+  }
+ },
+ {"trip":
+  {
+   "date": "042220172000",
+   "CO2": 9.13965,
+   "travelMode": "Bus",
+   "people": 12
+  }
+ },
+ {"trip":
+  {
+   "date": "04223017161200",
+   "CO2": 3.2487,
+   "travelMode": "Conventional Car",
+   "people": 1
+  }
+ },
+ {"trip":
+  {
+   "date": "04223017161500",
+   "CO2": 3.2487,
+   "travelMode": "Conventional Car",
+   "people": 1
+  }
+ },
+ {"trip":
+  {
+   "date": "042420170800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people": 2
+  }
+ },
+ {"trip":
+  {
+   "date": "042420171800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people": 2
+  }
+ },
+ {"trip":
+  {
+   "date": "042520170800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people" : 2
+  }
+ },
+ {"trip":
+  {
+   "date": "042520171800",
+   "CO2": 3.3124,
+   "travelMode": "Conventional Car",
+   "people" : 2
+  }
+ },
+ {"trip":
+  {
+   "date": "042620171800",
+   "CO2": 4.3602,
+   "travelMode": "Bus",
+   "people" 12
+  }
+ },
+ {"trip":
+  {
+   "date": "042620170800",
+   "CO2": 4.3602,
+   "travelMode": "Bus",
+   "people": 12
+  }
+ },
+ {"trip":
+  {
+   "date": "042720171800",
+   "CO2": 4.3602,
+   "travelMode": "Bus",
+   "people": 12
+  }
+ },
+ {"trip":
+  {
+   "date": "042720170800",
+   "CO2": 4.3602,
+   "travelMode": "Bus",
+   "people: 12
+  }
+ }
+]
+}
